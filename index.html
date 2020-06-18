@@ -2,16 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NES-TS</title>
-    <script type="module" src="nes.js" defer></script>
+    <script type="module">
+      import { NES } from "./build/nes.js";
+      let canvas = document.getElementById("mainCanvas");
+      let nes = new NES(canvas);
+    </script>
   </head>
   <body>
     <canvas
       id="mainCanvas"
-      width="256"
-      height="240"
-      style="border: 1px solid black; width: 512px; height: 480px;"
+      width="512"
+      height="480"
+      style="border: 1px solid black;"
     >
       NES Game Screen
     </canvas>
