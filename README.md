@@ -4,9 +4,10 @@ A port of [nes-js](https://github.com/takahirox/nes-js) to TypeScript!
 
 ## Build and Run
 
-- Run `tsc` in the root directory to build the JavaScript
+- Run `tsc -w` in the root directory to build the JavaScript whenever the TypeScript changes
 - Run `npm install` to install dependencies
 - Run `npm start` to start lite-server and open browser
+- Drag and drop game ROM into browser
 
 ## To Dos
 
