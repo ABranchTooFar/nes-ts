@@ -5,8 +5,38 @@
     <title>NES-TS</title>
     <script type="module">
       import { NES } from "./build/nes.js";
+      import { ROM } from "./build/rom.js";
+
       let canvas = document.getElementById("mainCanvas");
       let nes = new NES(canvas);
+
+      function dragOverHandler(e) {
+        e.preventDefault();
+      }
+
+      function dropHandler(e) {
+        e.preventDefault();
+
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+          console.log('Loading done.');
+          let rom = new ROM(e.target.result);
+        };
+
+        reader.onerror = function(e) {
+          for(var key in reader.error) {
+            console.log(key + '=' + reader.error[key]);
+          }
+        };
+
+        reader.readAsArrayBuffer(e.dataTransfer.files[0]);
+
+        console.log('Loading rom image...')
+      }
+
+      window.addEventListener('drop', dropHandler, false);
+      window.addEventListener('dragover', dragOverHandler, false);
     </script>
   </head>
   <body>
