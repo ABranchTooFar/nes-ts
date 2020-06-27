@@ -12,13 +12,17 @@ const RAM_BANKS_NUM_ADDRESS = 8;
 // TODO: There are more bytes that are rarely used
 
 export class ROM {
+    // TODO: Most of these don't need to be members anymore
     romDataView: DataView;
     signature: String = "";
     magicNumber: number;
     prgBanksNum: number;
     prgRomSize: number;
+    prgRomData: DataView;
     chrBanksNum: number;
+    chrRomSize: number;
     chrRomOffset: number;
+    chrRomData: DataView;
     controlByte1: number;
     controlByte2: number;
 
@@ -36,15 +40,24 @@ export class ROM {
         this.prgBanksNum = this.romDataView.getUint8(PRG_BANKS_NUM_ADDRESS);
         this.prgRomSize = this.prgBanksNum * 0x4000;
 
-        let prgRom = new DataView(romData, HEADER_SIZE, this.prgRomSize);
-        console.log(prgRom.getUint8(0).toString(16));
+        // TODO: Skip trainer data if present
+        this.prgRomData = new DataView(romData, HEADER_SIZE, this.prgRomSize);
 
         this.chrRomOffset = HEADER_SIZE + this.prgRomSize;
         this.chrBanksNum = this.romDataView.getUint8(CHR_BANKS_NUM_ADDRESS);
+        this.chrRomSize = this.chrBanksNum * 0x2000;
+
+        this.chrRomData = new DataView(romData, this.chrRomOffset, this.chrRomSize)
+
         this.controlByte1 = this.romDataView.getUint8(CONTROL_BYTE1_ADDRESS);
         this.controlByte2 = this.romDataView.getUint8(CONTROL_BYTE2_ADDRESS);
 
         this.dumpHeader();
+    }
+
+    // TODO: This is only for debugging
+    chrLoad(address: number): number {
+        return this.chrRomData.getUint8(address);
     }
     
     dumpHeader() {

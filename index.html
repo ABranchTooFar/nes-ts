@@ -22,6 +22,7 @@
         reader.onload = function(e) {
           console.log('Loading done.');
           let rom = new ROM(e.target.result);
+          nes.loadRom(rom);
         };
 
         reader.onerror = function(e) {

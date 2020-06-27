@@ -7,6 +7,7 @@ export class Display {
   ctx: CanvasRenderingContext2D;
   constructor(canvas: any) {
     this.ctx = canvas.getContext("2d");
+    //this.ctx.imageSmoothingEnabled = false;
 
     this.pixelWidth = canvas.width/width;
     if (!Number.isInteger(this.pixelWidth)) {
