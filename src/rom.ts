@@ -60,7 +60,7 @@ export class ROM {
         return this.chrRomData.getUint8(address);
     }
     
-    dumpHeader() {
+    dumpHeader(): void {
         console.log("--- Header Dump ---");
         console.log("Header Signature: " + this.signature);
         console.log("Magic number: 0x" + this.magicNumber.toString(16));

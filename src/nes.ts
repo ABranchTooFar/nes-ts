@@ -10,7 +10,7 @@ export class NES {
     this.ppu = new PPU(new Display(canvas));
   }
 
-  loadRom(rom: ROM) {
+  loadRom(rom: ROM): void {
     this.ppu.loadRom(rom);
   }
 }

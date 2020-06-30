@@ -21,7 +21,7 @@ export class Display {
   }
 
   // TODO: Change c to a color enum? 
-  renderPixel(x: number, y: number, color: string) {
+  renderPixel(x: number, y: number, color: string): void {
     this.ctx.fillStyle = color;
     // Be careful to not render 1/2 pixels!
     // Will need to calculate pixel width and height from canvas width and height
